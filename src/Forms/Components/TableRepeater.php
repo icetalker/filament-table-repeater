@@ -11,27 +11,27 @@ class TableRepeater extends Repeater
     //columns for table header
     protected array|null $labelColumns = [];
 
-    public function getLabelColumns():array|null
+    public function getLabelColumns(): array|null
     {
         return $this->labelColumns;
     }
 
-    protected function setLabelColumns():void
+    protected function setLabelColumns(): void
     {
         $components = $this->getChildComponents();
 
-        foreach($components as $component){
+        foreach ($components as $component) {
             $this->labelColumns[] = $component->getLabel();
         }
     }
 
     public function childComponents(array | \Closure $components): static
     {
-        foreach ($components as $component){
+        foreach ($components as $component) {
             $component->disableLabel(); //Disable Label, only show Inputs inside table
             $this->childComponents[] = $component;
         }
-        
+
         return $this;
     }
 
@@ -43,5 +43,4 @@ class TableRepeater extends Repeater
 
         return $this;
     }
-    
 }
