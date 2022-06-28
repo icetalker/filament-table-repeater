@@ -1,0 +1,73 @@
+{
+    "name": "icetalker/filament-table-repeater",
+    "description": "This is a package for Filament form component. Extends form Repeater, but shows in Table Layout.",
+    "keywords": [
+        "icetalker",
+        "laravel",
+        "filament-table-repeater"
+    ],
+    "homepage": "https://github.com/icetalker/filament-table-repeater",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Martin Hwang",
+            "email": "martin.hwang@outlook.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^8.0",
+        "filament/filament":"^2.0",
+        "spatie/laravel-package-tools": "^1.9.2",
+        "illuminate/contracts": "^8.6|^9.0"
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^3.8",
+        "nunomaduro/collision": "^6.0",
+        "nunomaduro/larastan": "^2.0.1",
+        "orchestra/testbench": "^7.0",
+        "pestphp/pest": "^1.21",
+        "pestphp/pest-plugin-laravel": "^1.1",
+        "phpstan/extension-installer": "^1.1",
+        "phpstan/phpstan-deprecation-rules": "^1.0",
+        "phpstan/phpstan-phpunit": "^1.0",
+        "phpunit/phpunit": "^9.5",
+        "spatie/laravel-ray": "^1.26"
+    },
+    "autoload": {
+        "psr-4": {
+            "Icetalker\\FilamentTableRepeater\\": "src",
+            "Icetalker\\FilamentTableRepeater\\Database\\Factories\\": "database/factories"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Icetalker\\FilamentTableRepeater\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "analyse": "vendor/bin/phpstan analyse",
+        "test": "vendor/bin/pest",
+        "test-coverage": "vendor/bin/pest --coverage",
+        "format": "vendor/bin/php-cs-fixer fix --allow-risky=yes"
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true,
+            "phpstan/extension-installer": true
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Icetalker\\FilamentTableRepeater\\FilamentTableRepeaterServiceProvider"
+            ],
+            "aliases": {
+                "FilamentTableRepeater": "Icetalker\\FilamentTableRepeater\\Facades\\FilamentTableRepeater"
+            }
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
