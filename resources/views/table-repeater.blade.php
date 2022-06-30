@@ -18,7 +18,7 @@
         $isItemDeletionDisabled = $isItemDeletionDisabled();
         $isItemMovementDisabled = $isItemMovementDisabled();
 
-        $labelColumns = $getLabelColumns();
+        $columnLabels = $getColumnLabels();
 
     @endphp
 
@@ -30,7 +30,6 @@
     
         class="bg-white border border-gray-300 shadow-sm rounded-xl relative dark:bg-gray-800 dark:border-gray-600"
     >
-        <!-- Interact with the `state` property in Alpine.js -->
 
         <div @class([
             'filament-tables-header',
@@ -66,14 +65,14 @@
         </div>
 
         <div class="px-4">
-            <table class="w-full text-left rtl:text-right table-auto filament-tables-table mx-4" x-show="! isCollapsed">
+            <table class="w-full text-left rtl:text-right table-auto mx-4 filament-table-repeater" x-show="! isCollapsed">
                 <thead>
                     <tr>
 
-                        @foreach($labelColumns as $labelColumn)
-                            <th class="p-2 filament-tables-header-cell">
+                        @foreach($columnLabels as $columnLabel)
+                            <th class="p-2 filament-table-repeater-header-cell">
                                 <span>
-                                    {{ $labelColumn }}
+                                    {{ $columnLabel }}
                                 </span>
                             </th>
                         @endforeach

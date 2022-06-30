@@ -9,19 +9,21 @@ class TableRepeater extends Repeater
     protected string $view = 'forms.components.table-repeater';
 
     //columns for table header
-    protected array|null $labelColumns = [];
+    protected array|null $columnLabels = [];
 
-    public function getLabelColumns():array|null
+    public function getColumnLabels():array|null
     {
-        return $this->labelColumns;
+        $this->setColumnLabels();
+
+        return $this->columnLabels;
     }
 
-    protected function setLabelColumns():void
+    protected function setColumnLabels():void
     {
         $components = $this->getChildComponents();
 
         foreach($components as $component){
-            $this->labelColumns[] = $component->getLabel();
+            $this->columnLabels[] = $component->getLabel();
         }
     }
 
@@ -35,13 +37,4 @@ class TableRepeater extends Repeater
         return $this;
     }
 
-    // Add: Set Table Header Column
-    public function schema(array | \Closure $components): static
-    {
-        $this->childComponents($components);
-        $this->setLabelColumns($components);
-
-        return $this;
-    }
-    
 }
