@@ -7,7 +7,6 @@ use Spatie\LaravelPackageTools\PackageServiceProvider;
 
 class FilamentTableRepeaterServiceProvider extends PackageServiceProvider
 {
-
     public function boot()
     {
         $this->bootLoaders();
@@ -25,5 +24,4 @@ class FilamentTableRepeaterServiceProvider extends PackageServiceProvider
     {
         $this->loadViewsFrom(__DIR__ . '/../resources/views', 'filament-table-repeater');
     }
-
 }

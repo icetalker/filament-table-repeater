@@ -2,9 +2,9 @@
 
 namespace Icetalker\FilamentTableRepeater\Tests;
 
+use Icetalker\FilamentTableRepeater\FilamentTableRepeaterServiceProvider;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Orchestra\Testbench\TestCase as Orchestra;
-use Icetalker\FilamentTableRepeater\FilamentTableRepeaterServiceProvider;
 
 class TestCase extends Orchestra
 {

@@ -29,11 +29,11 @@ class TableRepeater extends Repeater
 
     public function childComponents(array | \Closure $components): static
     {
-        foreach ($components as $component){
+        foreach ($components as $component) {
             $component->disableLabel(); //Disable Label, only show Inputs inside table
             $this->childComponents[] = $component;
         }
-        
+
         return $this;
     }
 
