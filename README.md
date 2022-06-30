@@ -10,8 +10,7 @@
 
 This is a package for Filament form component. Extends from Repeater, but display in Table Layout.
 
-<img src="./screeenshots/screen-shot.png" />
-
+![image](/screenshots/screen-shot.png)
 
 ## Installation
 
