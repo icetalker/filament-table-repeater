@@ -11,18 +11,18 @@ class TableRepeater extends Repeater
     //columns for table header
     protected array|null $columnLabels = [];
 
-    public function getColumnLabels():array|null
+    public function getColumnLabels(): array|null
     {
         $this->setColumnLabels();
 
         return $this->columnLabels;
     }
 
-    protected function setColumnLabels():void
+    protected function setColumnLabels(): void
     {
         $components = $this->getChildComponents();
 
-        foreach($components as $component){
+        foreach ($components as $component) {
             $this->columnLabels[] = $component->getLabel();
         }
     }
@@ -36,5 +36,4 @@ class TableRepeater extends Repeater
 
         return $this;
     }
-
 }
