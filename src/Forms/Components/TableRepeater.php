@@ -6,7 +6,7 @@ use Filament\Forms\Components\Repeater;
 
 class TableRepeater extends Repeater
 {
-    protected string $view = 'forms.components.table-repeater';
+    protected string $view = 'filament-table-repeater::table-repeater';
 
     //columns for table header
     protected array|null $columnLabels = [];
