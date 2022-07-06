@@ -30,6 +30,6 @@ class FilamentTableRepeaterServiceProvider extends PackageServiceProvider
     {
         $this->publishes([
             __DIR__ . '/../resources/views' => resource_path('views/vendor/filament-table-repeater'),
-        ],'filament-table-repeater');
+        ], 'filament-table-repeater');
     }
 }
