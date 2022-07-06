@@ -10,6 +10,7 @@ class FilamentTableRepeaterServiceProvider extends PackageServiceProvider
     public function boot()
     {
         $this->bootLoaders();
+        $this->bootPublishing();
     }
 
     public function configurePackage(Package $package): void
@@ -23,5 +24,12 @@ class FilamentTableRepeaterServiceProvider extends PackageServiceProvider
     protected function bootLoaders()
     {
         $this->loadViewsFrom(__DIR__ . '/../resources/views', 'filament-table-repeater');
+    }
+
+    protected function bootPublishing()
+    {
+        $this->publishes([
+            __DIR__ . '/../resources/views' => resource_path('views/vendor/filament-table-repeater'),
+        ],'filament-table-repeater');
     }
 }
