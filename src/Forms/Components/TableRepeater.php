@@ -23,7 +23,9 @@ class TableRepeater extends Repeater
         $components = $this->getChildComponents();
 
         foreach ($components as $component) {
-            $this->columnLabels[] = $component->getLabel();
+            if(!$component->isHidden() && !($component instanceof \Filament\Forms\Components\Hidden)) {
+                $this->columnLabels[] = $component->getLabel();
+            }
         }
     }
 
