@@ -22,12 +22,12 @@
 
     @endphp
 
-    <div 
+    <div
         {{-- x-data="{ state: $wire.entangle('{{ $getStatePath() }}') }"  --}}
         x-data="{ isCollapsed: @js($isCollapsed()) }"
         x-on:repeater-collapse.window="$event.detail === '{{ $getStatePath() }}' && (isCollapsed = true)"
         x-on:repeater-expand.window="$event.detail === '{{ $getStatePath() }}' && (isCollapsed = false)"
-    
+
         class="bg-white border border-gray-300 shadow-sm rounded-xl relative dark:bg-gray-800 dark:border-gray-600"
     >
 
@@ -36,8 +36,8 @@
             'flex items-center h-10 overflow-hidden border-b bg-gray-50 rounded-t-xl',
             'dark:bg-gray-800 dark:border-gray-700' => config('forms.dark_mode'),
         ])>
-            
-            <div class="flex-1"></div>        
+
+            <div class="flex-1"></div>
             @if ($isCollapsible)
                 <div>
                     <button
@@ -76,20 +76,20 @@
                                 </span>
                             </th>
                         @endforeach
-                        
-                                        
+
+
                         <th class="w-10"></th>
                     </tr>
                 </thead>
-                
-                <tbody 
+
+                <tbody
                     wire:sortable
                     wire:end.stop="dispatchFormEvent('repeater::moveItems', '{{ $getStatePath() }}', $event.target.sortable.toArray())"
                 >
 
                     @foreach ($containers as $uuid => $item)
-                        
-                        <tr 
+
+                        <tr
                             x-data="{ isCollapsed: @js($isCollapsed()) }"
                             x-on:repeater-collapse.window="$event.detail === '{{ $getStatePath() }}' && (isCollapsed = true)"
                             x-on:repeater-expand.window="$event.detail === '{{ $getStatePath() }}' && (isCollapsed = false)"
@@ -103,43 +103,45 @@
                             </td>
                             @endforeach
 
-                            <td class="w-10 flex">
-                                @unless ($isItemMovementDisabled)
-                                    <button
-                                        wire:sortable.handle
-                                        wire:keydown.prevent.arrow-up="dispatchFormEvent('repeater::moveItemUp', '{{ $getStatePath() }}', '{{ $uuid }}')"
-                                        wire:keydown.prevent.arrow-down="dispatchFormEvent('repeater::moveItemDown', '{{ $getStatePath() }}', '{{ $uuid }}')"
-                                        type="button"
-                                        @class([
-                                            'flex items-center justify-center flex-none text-gray-400 w-5 h-10 transition hover:text-gray-300',
-                                            'dark:text-gray-400 dark:hover:text-gray-500' => config('forms.dark_mode'),
-                                        ])
-                                    >
-                                        <span class="sr-only">
-                                            {{ __('forms::components.repeater.buttons.move_item_down.label') }}
-                                        </span>
+							@if (!$isItemMovementDisabled || !$isItemDeletionDisabled)
+								<td class="w-10 flex">
+									@if (!$isItemMovementDisabled)
+										<button
+											wire:sortable.handle
+											wire:keydown.prevent.arrow-up="dispatchFormEvent('repeater::moveItemUp', '{{ $getStatePath() }}', '{{ $uuid }}')"
+											wire:keydown.prevent.arrow-down="dispatchFormEvent('repeater::moveItemDown', '{{ $getStatePath() }}', '{{ $uuid }}')"
+											type="button"
+											@class([
+												'flex items-center justify-center flex-none text-gray-400 w-5 h-10 transition hover:text-gray-300',
+												'dark:text-gray-400 dark:hover:text-gray-500' => config('forms.dark_mode'),
+											])
+										>
+											<span class="sr-only">
+												{{ __('forms::components.repeater.buttons.move_item_down.label') }}
+											</span>
 
-                                        <x-heroicon-s-switch-vertical class="w-4 h-4"/>
-                                    </button>
-                                @endunless
+											<x-heroicon-s-switch-vertical class="w-4 h-4"/>
+										</button>
+									@endif
 
-                                @if (!$isItemDeletionDisabled)
-                                    <button
-                                        wire:click="dispatchFormEvent('repeater::deleteItem', '{{ $getStatePath() }}', '{{ $uuid }}')"
-                                        type="button"
-                                        @class([
-                                            'flex items-center justify-center flex-none w-5 h-10 text-danger-600 transition hover:text-danger-500',
-                                            'dark:text-danger-500 dark:hover:text-danger-400' => config('forms.dark_mode'),
-                                        ])
-                                    >
-                                        <span class="sr-only">
-                                            {{ __('forms::components.repeater.buttons.delete_item.label') }}
-                                        </span>
+									@if (!$isItemDeletionDisabled)
+										<button
+											wire:click="dispatchFormEvent('repeater::deleteItem', '{{ $getStatePath() }}', '{{ $uuid }}')"
+											type="button"
+											@class([
+												'flex items-center justify-center flex-none w-5 h-10 text-danger-600 transition hover:text-danger-500',
+												'dark:text-danger-500 dark:hover:text-danger-400' => config('forms.dark_mode'),
+											])
+										>
+											<span class="sr-only">
+												{{ __('forms::components.repeater.buttons.delete_item.label') }}
+											</span>
 
-                                        <x-heroicon-s-trash class="w-4 h-4"/>
-                                    </button>
-                                @endif
-                            </td>
+											<x-heroicon-s-trash class="w-4 h-4"/>
+										</button>
+									@endif
+								</td>
+							@endif
                         </tr>
                     @endforeach
                 </tbody>
@@ -150,8 +152,6 @@
                 {{ __('forms::components.repeater.collapsed') }}
             </div>
         </div>
-
-        
 
         @if(!$isItemCreationDisabled)
             <div class="relative flex justify-center py-2">
