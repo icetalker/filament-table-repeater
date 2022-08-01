@@ -77,8 +77,9 @@
                             </th>
                         @endforeach
 
-
-                        <th class="w-10"></th>
+						@if (!$isItemMovementDisabled || !$isItemDeletionDisabled)
+                        	<th class="w-10"></th>
+						@endif
                     </tr>
                 </thead>
 
