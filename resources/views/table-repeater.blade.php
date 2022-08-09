@@ -28,7 +28,10 @@
         x-on:repeater-collapse.window="$event.detail === '{{ $getStatePath() }}' && (isCollapsed = true)"
         x-on:repeater-expand.window="$event.detail === '{{ $getStatePath() }}' && (isCollapsed = false)"
 
-        class="bg-white border border-gray-300 shadow-sm rounded-xl relative dark:bg-gray-800 dark:border-gray-600"
+        @class([
+            "bg-white border border-gray-300 shadow-sm rounded-xl relative",
+            "dark:bg-gray-800 dark:border-gray-600"  => config('forms.dark_mode'),
+        ])
     >
 
         <div @class([
@@ -70,11 +73,15 @@
                     <tr>
 
                         @foreach($columnLabels as $columnLabel)
+                            @if($columnLable['display'])
                             <th class="p-2 filament-table-repeater-header-cell">
                                 <span>
-                                    {{ $columnLabel }}
+                                    {{ $columnLabel['name'] }}
                                 </span>
                             </th>
+                            @else
+                            <th style="display: none"></th>
+                            @endif
                         @endforeach
 
 						@if (!$isItemMovementDisabled || !$isItemDeletionDisabled)
@@ -99,7 +106,9 @@
                         >
 
                             @foreach($item->getComponents() as $component)
-                            <td>
+                            <td
+                                @if($component->isHidden() || ($component instanceof \Filament\Forms\Components\Hidden))style="dispaly:none"@endif
+                            >
                                 {{ $component }}
                             </td>
                             @endforeach
