@@ -73,7 +73,7 @@
                     <tr>
 
                         @foreach($columnLabels as $columnLabel)
-                            @if($columnLable['display'])
+                            @if($columnLabel['display'])
                             <th class="p-2 filament-table-repeater-header-cell">
                                 <span>
                                     {{ $columnLabel['name'] }}
@@ -107,7 +107,7 @@
 
                             @foreach($item->getComponents() as $component)
                             <td
-                                @if($component->isHidden() || ($component instanceof \Filament\Forms\Components\Hidden))style="dispaly:none"@endif
+                                @if($component->isHidden() || ($component instanceof \Filament\Forms\Components\Hidden))style="display:none"@endif
                             >
                                 {{ $component }}
                             </td>
