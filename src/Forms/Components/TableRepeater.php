@@ -20,15 +20,13 @@ class TableRepeater extends Repeater
 
     protected function setColumnLabels(): void
     {
-        
         $components = $this->getChildComponents();
 
         foreach ($components as $component) {
             $this->columnLabels[] = [
                 'name' => $component->getLabel(),
-                'display' => ($component->isHidden()||($component instanceof \Filament\Forms\Components\Hidden))?false:true,
+                'display' => ($component->isHidden() || ($component instanceof \Filament\Forms\Components\Hidden)) ? false : true,
             ];
-            
         }
     }
 
