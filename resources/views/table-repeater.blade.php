@@ -73,7 +73,7 @@
                     <tr>
 
                         @foreach($columnLabels as $columnLabel)
-                            @if($columnLable['display'])
+                            @if($columnLabel['display'])
                             <th class="p-2 filament-table-repeater-header-cell">
                                 <span>
                                     {{ $columnLabel['name'] }}
