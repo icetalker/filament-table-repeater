@@ -67,7 +67,7 @@
             @endif
         </div>
 
-        <div class="px-4">
+        <div class="p-4">
             <table class="w-full text-left rtl:text-right table-auto mx-4 filament-table-repeater" x-show="! isCollapsed">
                 <thead>
                     <tr>
@@ -106,7 +106,7 @@
                         >
 
                             @foreach($item->getComponents() as $component)
-                            <td
+                            <td class="px-2 py-1" 
                                 @if($component->isHidden() || ($component instanceof \Filament\Forms\Components\Hidden))style="display:none"@endif
                             >
                                 {{ $component }}
@@ -114,7 +114,7 @@
                             @endforeach
 
 							@if (!$isItemMovementDisabled || !$isItemDeletionDisabled)
-								<td class="w-10 flex">
+								<td class="w-10 flex py-1">
 									@if (!$isItemMovementDisabled)
 										<button
 											wire:sortable.handle
