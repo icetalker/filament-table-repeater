@@ -23,7 +23,7 @@ composer require icetalker/filament-table-repeater
 You can publish the views using
 
 ```bash
-php artisan vendor:publish --tag="filament-table-repeater-views"
+php artisan vendor:publish --tag="filament-table-repeater"
 ```
 
 ## Usage
