@@ -19,6 +19,7 @@
         $isItemMovementDisabled = $isItemMovementDisabled();
 
         $columnLabels = $getColumnLabels();
+        $colStyles = $getColStyles();
 
     @endphp
 
@@ -74,7 +75,11 @@
 
                         @foreach($columnLabels as $columnLabel)
                             @if($columnLabel['display'])
-                            <th class="p-2 filament-table-repeater-header-cell">
+                            <th class="p-2 filament-table-repeater-header-cell"
+                                @if($colStyles && isset($colStyles[$columnLabel['component']]))
+                                    style="{{ $colStyles[$columnLabel['component']] }}"
+                                @endif
+                            >
                                 <span>
                                     {{ $columnLabel['name'] }}
                                 </span>
@@ -108,6 +113,9 @@
                             @foreach($item->getComponents() as $component)
                             <td
                                 @if($component->isHidden() || ($component instanceof \Filament\Forms\Components\Hidden))style="display:none"@endif
+                                @if($colStyles && isset($colStyles[$component->getName()]))
+                                    style="$colStyles[$component->getName()]"
+                                @endif
                             >
                                 {{ $component }}
                             </td>

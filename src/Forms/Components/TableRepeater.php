@@ -11,6 +11,8 @@ class TableRepeater extends Repeater
     //columns for table header
     protected array|null $columnLabels = [];
 
+    protected array|null $colStyles;
+
     public function getColumnLabels(): array|null
     {
         $this->setColumnLabels();
@@ -24,6 +26,7 @@ class TableRepeater extends Repeater
 
         foreach ($components as $component) {
             $this->columnLabels[] = [
+                'component' => $component->getName(),
                 'name' => $component->getLabel(),
                 'display' => ($component->isHidden() || ($component instanceof \Filament\Forms\Components\Hidden)) ? false : true,
             ];
@@ -38,5 +41,17 @@ class TableRepeater extends Repeater
         }
 
         return $this;
+    }
+
+    public function colStyles(array $colstyles): static
+    {
+        $this->colStyles = $colstyles;
+
+        return $this;
+    }
+
+    public function getColStyles(): array|null
+    {
+        return $this->colStyles;
     }
 }

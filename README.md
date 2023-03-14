@@ -54,6 +54,38 @@ protected function getFormSchema(): array
 
 > Since this component extends from `Filament\Forms\Components\Repeater`, you can use most of its methods, except for a few methods like `inset()`, `grid()`, `columns()`. 
 
+## Other method
+
+### colStyles
+
+To customize styles for each cell, you can pass an array of component name as key and css style as value to `colStyles()`.  See example below:
+
+```php
+use Icetalker\FilamentTableRepeater\Forms\Components\TableRepeater;
+
+protected function getFormSchema(): array
+{
+    return [
+        ...
+        Forms\Components\Grid::make(1)->schema([
+
+            TableRepeater::make('items')
+                ->relationship('items')
+                ->schema([
+                    Forms\Components\TextInput::make('product'),
+                    Forms\Components\TextInput::make('quantity'),
+                    ...
+                ])
+                ->colStyles([
+                    'product' => 'color: #0000ff; width: 250px;',
+                ]),
+
+        ]),
+
+    ];
+}
+```
+
 
 ## Testing
 
