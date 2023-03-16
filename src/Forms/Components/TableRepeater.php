@@ -11,7 +11,7 @@ class TableRepeater extends Repeater
     //columns for table header
     protected array|null $columnLabels = [];
 
-    protected array|null $colStyles;
+    protected array|null $colStyles = null;
 
     public function getColumnLabels(): array|null
     {
