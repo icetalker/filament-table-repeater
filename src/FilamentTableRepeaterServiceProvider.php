@@ -24,6 +24,7 @@ class FilamentTableRepeaterServiceProvider extends PackageServiceProvider
     protected function bootLoaders()
     {
         $this->loadViewsFrom(__DIR__ . '/../resources/views', 'filament-table-repeater');
+        $this->loadTranslationsFrom(__DIR__ . '/../lang', 'filament-table-repeater');
     }
 
     protected function bootPublishing()

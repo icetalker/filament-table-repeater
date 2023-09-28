@@ -13,6 +13,12 @@ class TableRepeater extends Repeater
 
     protected array|null $colStyles = null;
 
+    protected function setUp(): void
+    {
+        $this->columnSpan('full');
+        parent::setUp();
+    }
+
     public function getColumnLabels(): array|null
     {
         $this->setColumnLabels();
@@ -36,7 +42,7 @@ class TableRepeater extends Repeater
     public function childComponents(array | \Closure $components): static
     {
         foreach ($components as $component) {
-            $component->disableLabel(); //Disable Label, only show Inputs inside table
+            $component->hiddenLabel(); //Disable Label, only show Inputs inside table
             $this->childComponents[] = $component;
         }
 
@@ -54,4 +60,5 @@ class TableRepeater extends Repeater
     {
         return $this->colStyles;
     }
+
 }

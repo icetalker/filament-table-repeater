@@ -10,7 +10,9 @@
 
 This is a package for Filament form component. Extends from Repeater, but display in Table Layout.
 
-![image](/screenshots/screen-shot.png)
+![image](/screenshots/filament-table-repeater-light.png)
+
+![image](/screenshots/filament-table-repeater-dark.png)
 
 ## Installation
 
@@ -35,18 +37,17 @@ protected function getFormSchema(): array
 {
     return [
         ...
-        Forms\Components\Grid::make(1)->schema([
-
-            TableRepeater::make('items')
+        TableRepeater::make('items')
                 ->relationship('items')
                 ->schema([
                     Forms\Components\TextInput::make('product'),
                     ...
                 ])
+                ->reorderable()
+                ->cloneable()
                 ->collapsible()
-                ->defaultItems(3),
-
-        ]),
+                ->defaultItems(3)
+                ->columnSpan('full'),
 
     ];
 }
@@ -54,7 +55,7 @@ protected function getFormSchema(): array
 
 > Since this component extends from `Filament\Forms\Components\Repeater`, you can use most of its methods, except for a few methods like `inset()`, `grid()`, `columns()`. 
 
-## Other method
+## Other methods
 
 ### colStyles
 
