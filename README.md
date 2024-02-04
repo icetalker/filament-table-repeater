@@ -10,9 +10,9 @@
 
 This is a package for Filament form component. Extends from Repeater, but display in Table Layout.
 
-![image](/screenshots/filament-table-repeater-light.png)
+![image](https://raw.githubusercontent.com/icetalker/filament-table-repeater/main/screenshots/filament-table-repeater-light.png)
 
-![image](/screenshots/filament-table-repeater-dark.png)
+![image](https://raw.githubusercontent.com/icetalker/filament-table-repeater/main/screenshots/filament-table-repeater-dark.png)
 
 ## Installation
 
