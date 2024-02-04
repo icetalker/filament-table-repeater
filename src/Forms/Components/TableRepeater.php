@@ -60,5 +60,4 @@ class TableRepeater extends Repeater
     {
         return $this->colStyles;
     }
-
 }
