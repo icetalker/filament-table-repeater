@@ -17,6 +17,7 @@
         $isCloneable = $isCloneable();
         $isCollapsible = $isCollapsible();
         $isDeletable = $isDeletable();
+        $isReorderable = $isReorderable();
         $isReorderableWithButtons = $isReorderableWithButtons();
         $isReorderableWithDragAndDrop = $isReorderableWithDragAndDrop();
 
@@ -101,8 +102,10 @@
                 </thead>
 
                 <tbody
-                    :wire:end.stop="'mountFormComponentAction(\'' . $statePath . '\', \'reorder\', { items: $event.target.sortable.toArray() })'"
-                    x-sortable
+                    @if($isReorderable)
+                        :wire:end.stop="'mountFormComponentAction(\'' . $statePath . '\', \'reorder\', { items: $event.target.sortable.toArray() })'"
+                       x-sortable
+                    @endif
                 >
 
                     @foreach ($containers as $uuid => $item)
