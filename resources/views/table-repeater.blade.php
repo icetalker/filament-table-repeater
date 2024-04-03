@@ -119,7 +119,7 @@
 
                             @foreach($item->getComponents() as $component)
                             <td
-                                class="filament-table-repeater-tbody-cell px-1"
+                                class="filament-table-repeater-tbody-cell px-1 align-top"
                                 @if($component->isHidden() || ($component instanceof \Filament\Forms\Components\Hidden))style="display:none"@endif
                                 @if($colStyles && isset($colStyles[$component->getName()]))
                                     style="$colStyles[$component->getName()]"
