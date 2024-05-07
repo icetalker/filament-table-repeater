@@ -33,9 +33,9 @@ php artisan vendor:publish --tag="filament-table-repeater"
 ```php
 use Icetalker\FilamentTableRepeater\Forms\Components\TableRepeater;
 
-protected function getFormSchema(): array
+protected function form(Form $form): Form
 {
-    return [
+    return $form->schema([
         ...
         TableRepeater::make('items')
                 ->relationship('items')
@@ -46,10 +46,11 @@ protected function getFormSchema(): array
                 ->reorderable()
                 ->cloneable()
                 ->collapsible()
-                ->defaultItems(3)
+                ->minItems(3)
+                ->maxItems(5)
                 ->columnSpan('full'),
 
-    ];
+    ]);
 }
 ```
 
@@ -64,9 +65,9 @@ To customize styles for each cell, you can pass an array of component name as ke
 ```php
 use Icetalker\FilamentTableRepeater\Forms\Components\TableRepeater;
 
-protected function getFormSchema(): array
+protected function form(Form $form): Form
 {
-    return [
+    return $form->schema([
         ...
         Forms\Components\Grid::make(1)->schema([
 
@@ -83,10 +84,57 @@ protected function getFormSchema(): array
 
         ]),
 
-    ];
+    ]);
 }
 ```
 
+Besides, you can also pass a callback function to `colStyles()`. This may unlock more customization possibilities. See example below:
+
+```php
+use Icetalker\FilamentTableRepeater\Forms\Components\TableRepeater;
+
+protected function form(Form $form): Form
+{
+    return $form
+        ->schema([
+            ...
+            Forms\Components\Grid::make(1)->schema([
+
+                TableRepeater::make('items')
+                    ->relationship('items')
+                    ->schema([
+                        Forms\Components\TextInput::make('product'),
+                        Forms\Components\TextInput::make('quantity'),
+                        ...
+                    ])
+                    ->colStyles(function(){
+                        return [
+                            'product' => 'color: #0000ff; width: 250px;',
+                        ]
+                    }),
+
+            ]),
+
+        ]);
+}
+```
+
+## Style customization
+
+Besides the `colStyles()` method mentioned above, we use few css classes to provide extra ability for style customization. These classes were so called CSS "hook" classes. They are prefixed with `it-`(short for `icetalker`, which is the vendor name). Although we already have hook classes in old version, it's never been documented here. And for now, we rename these hook name by the new prefix `it-`:
+
+- `it-table-repeater` instead of `filament-table-repeater` in old version: As what you can tell from the class name, it allows you to customize the style for the whole table.
+- `it-table-repeater-cell-label` instead of `filament-table-repeater-header-cell` in old version: As what you can tell from the class name, it allows you to customize the style for the label of each column.
+- `it-table-repeater-cell` instead of `filament-table-repeater-tbody-cell` in old version: As what you can tell from the class name, it allows you to customize the style for the cell of each column.
+- `it-table-repeater-row`. This is new hook class, so that you can customize the style for each row. 
+
+You may add CSS to these classes in your `app.css` file, and filled with your own styles like this:
+
+```css
+.it-table-repeater-cell-label {
+    background-color: #fafafa;
+}
+```
 
 ## Testing
 

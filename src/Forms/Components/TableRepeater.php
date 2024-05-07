@@ -11,7 +11,7 @@ class TableRepeater extends Repeater
     //columns for table header
     protected array|null $columnLabels = [];
 
-    protected array|null $colStyles = null;
+    protected array| \Closure | null $colStyles = null;
 
     protected function setUp(): void
     {
@@ -49,15 +49,15 @@ class TableRepeater extends Repeater
         return $this;
     }
 
-    public function colStyles(array $colstyles): static
+    public function colStyles(array | \Closure $colstyles): static
     {
         $this->colStyles = $colstyles;
 
         return $this;
     }
 
-    public function getColStyles(): array|null
+    public function getColStyles(): array| \Closure | null
     {
-        return $this->colStyles;
+        return $this->evaluate($this->colStyles);
     }
 }

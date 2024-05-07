@@ -74,14 +74,14 @@
             @endif
         </div>
 
-        <div class="px-4">
-            <table class=" filament-table-repeater w-full text-left rtl:text-right table-auto mx-4" x-show="! isCollapsed">
+        <div class="px-4 py-1">
+            <table class="it-table-repeater w-full text-left rtl:text-right table-auto mx-4" x-show="! isCollapsed">
                 <thead>
                     <tr>
 
                         @foreach($columnLabels as $columnLabel)
                             @if($columnLabel['display'])
-                            <th class="filament-table-repeater-header-cell p-2"
+                            <th class="it-table-repeater-cell-label p-2"
                                 @if($colStyles && isset($colStyles[$columnLabel['component']]))
                                     style="{{ $colStyles[$columnLabel['component']] }}"
                                 @endif
@@ -111,6 +111,7 @@
                     @foreach ($containers as $uuid => $item)
 
                         <tr
+                            class="it-table-repeater-row"
                             x-on:repeater-collapse.window="$event.detail === '{{ $getStatePath() }}' && (isCollapsed = true)"
                             x-on:repeater-expand.window="$event.detail === '{{ $getStatePath() }}' && (isCollapsed = false)"
                             wire:key="{{ $this->getId() }}.{{ $item->getStatePath() }}.{{ $field::class }}.item"
@@ -119,13 +120,13 @@
 
                             @foreach($item->getComponents() as $component)
                             <td
-                                class="filament-table-repeater-tbody-cell px-1 align-top"
+                                class="it-table-repeater-cell px-1 py-2 align-top"
                                 @if($component->isHidden() || ($component instanceof \Filament\Forms\Components\Hidden))style="display:none"@endif
                                 @if($colStyles && isset($colStyles[$component->getName()]))
-                                    style="$colStyles[$component->getName()]"
+                                    style="{{ $colStyles[$component->getName()] }}"
                                 @endif
                             >
-                                {{ $component }}
+                               {{ $component }}
                             </td>
                             @endforeach
 
