@@ -74,7 +74,7 @@
             @endif
         </div>
 
-        <div class="px-4 py-1">
+        <div class="px-4{{ $isAddable? '' : ' py-2' }}">
             <table class="it-table-repeater w-full text-left rtl:text-right table-auto mx-4" x-show="! isCollapsed">
                 <thead>
                     <tr>
@@ -103,7 +103,7 @@
 
                 <tbody
                     @if($isReorderable)
-                        :wire:end.stop="'mountFormComponentAction(\'' . $statePath . '\', \'reorder\', { items: $event.target.sortable.toArray() })'"
+                        {{-- :wire:end.stop="'mountFormComponentAction(\'' . $statePath . '\', \'reorder\', { items: $event.target.sortable.toArray() })'" --}}
                        x-sortable
                     @endif
                 >
