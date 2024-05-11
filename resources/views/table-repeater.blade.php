@@ -58,13 +58,13 @@
                             'dark:text-gray-400 dark:hover:text-gray-500',
                         ])
                     >
-                        <x-heroicon-s-minus-small class="w-4 h-4" x-show="! isCollapsed"/>
+                        @svg('heroicon-s-minus-small', 'w-4 h-4', ['x-show' => '! isCollapsed'])
 
                         <span class="sr-only" x-show="! isCollapsed">
                             {{ __('forms::components.repeater.buttons.collapse_item.label') }}
                         </span>
 
-                        <x-heroicon-s-plus-small class="w-4 h-4" x-show="isCollapsed" x-cloak/>
+                        @svg('heroicon-s-plus-small', 'w-4 h-4', ['x-show' => 'isCollapsed', 'x-cloak'])
 
                         <span class="sr-only" x-show="isCollapsed" x-cloak>
                             {{ __('forms::components.repeater.buttons.expand_item.label') }}
