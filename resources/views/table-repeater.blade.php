@@ -135,7 +135,9 @@
                                     ])
                                 >
                                     @if (filled($itemLabel))
-                                        {{ $itemLabel }}
+                                        <span>
+                                            {{ $itemLabel }}
+                                        </span>
                                     @endif
                                 </th>
                             @endif
