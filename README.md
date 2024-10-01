@@ -127,6 +127,7 @@ Besides the `colStyles()` method mentioned above, we use few css classes to prov
 - `it-table-repeater-cell-label` instead of `filament-table-repeater-header-cell` in old version: As what you can tell from the class name, it allows you to customize the style for the label of each column.
 - `it-table-repeater-cell` instead of `filament-table-repeater-tbody-cell` in old version: As what you can tell from the class name, it allows you to customize the style for the cell of each column.
 - `it-table-repeater-row`. This is new hook class, so that you can customize the style for each row. 
+- `it-table-repeater-label`. A new hook class, so that you can customize the style for item labels on each row.
 
 You may add CSS to these classes in your `app.css` file, and filled with your own styles like this:
 

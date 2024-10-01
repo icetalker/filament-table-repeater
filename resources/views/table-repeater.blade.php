@@ -12,6 +12,8 @@
         $moveDownAction = $getAction($getMoveDownActionName());
         $moveUpAction = $getAction($getMoveUpActionName());
         $reorderAction = $getAction($getReorderActionName());
+        
+        $hasItemLabels = $hasItemLabels();
 
         $isAddable = $isAddable();
         $isCloneable = $isCloneable();
@@ -79,6 +81,10 @@
                 <thead>
                     <tr>
 
+                        @if ($hasItemLabels)
+                            <th></th>
+                        @endif
+
                         @foreach($columnLabels as $columnLabel)
                             @if($columnLabel['display'])
                             <th class="it-table-repeater-cell-label p-2"
@@ -109,6 +115,9 @@
                 >
 
                     @foreach ($containers as $uuid => $item)
+                        @php
+                            $itemLabel = $getItemLabel($uuid);
+                        @endphp
 
                         <tr
                             class="it-table-repeater-row"
@@ -117,6 +126,19 @@
                             wire:key="{{ $this->getId() }}.{{ $item->getStatePath() }}.{{ $field::class }}.item"
                             x-sortable-item="{{ $uuid }}"
                         >
+
+                            @if ($hasItemLabels)
+                                <th
+                                    @class([
+                                        'it-table-repeater-label text-sm font-medium text-right text-gray-950 dark:text-white px-1',
+                                        'truncate' => $isItemLabelTruncated(),
+                                    ])
+                                >
+                                    @if (filled($itemLabel))
+                                        {{ $itemLabel }}
+                                    @endif
+                                </th>
+                            @endif
 
                             @foreach($item->getComponents() as $component)
                             <td
