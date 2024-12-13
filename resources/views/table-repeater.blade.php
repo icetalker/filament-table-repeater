@@ -1,3 +1,7 @@
+@php
+use Filament\Support\Enums\Alignment;
+@endphp
+
 <x-dynamic-component
     :component="$getFieldWrapperView()"
     :field="$field"
@@ -186,7 +190,7 @@
         @if ($isAddable && $addAction->isVisible())
             <div
                 @class([
-                    'flex py-2',
+                    'flex py-2 px-8',
                     match ($getAddActionAlignment()) {
                         Alignment::Start, Alignment::Left => 'justify-start',
                         Alignment::Center, null => 'justify-center',
