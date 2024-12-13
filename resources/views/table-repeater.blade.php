@@ -183,8 +183,18 @@
             </div>
         </div>
 
-        @if($isAddable)
-            <div class="relative flex justify-center py-2">
+        @if ($isAddable && $addAction->isVisible())
+            <div
+                @class([
+                    'flex py-2',
+                    match ($getAddActionAlignment()) {
+                        Alignment::Start, Alignment::Left => 'justify-start',
+                        Alignment::Center, null => 'justify-center',
+                        Alignment::End, Alignment::Right => 'justify-end',
+                        default => $alignment,
+                    },
+                ])
+            >
                 {{ $addAction }}
             </div>
         @endif
