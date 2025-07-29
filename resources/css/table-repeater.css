@@ -1,0 +1,65 @@
+@import 'tailwindcss';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+.it-table-repeater  {
+    @apply bg-white border border-gray-200 shadow-sm rounded-xl relative dark:bg-gray-800 dark:border-gray-600;
+
+    & .it-table-repeater-header{
+        @apply flex items-center h-10 overflow-hidden border-b border-gray-100 bg-gray-50 rounded-t-xl dark:bg-gray-800 dark:border-gray-700;
+
+        & :first-child{
+            @apply flex-1;
+        }
+
+        & > div {
+            
+            & .it-table-repeater-btn-collapse{
+                @apply flex items-center justify-center flex-none w-10 h-10 text-gray-400 transition hover:text-gray-300 dark:text-gray-400 dark:hover:text-gray-500;
+            }
+        }
+        
+    }
+
+    & > div{
+        & > table {
+            @apply w-full text-left rtl:text-right table-auto mx-4;
+
+
+            & > thead {
+                & > tr {
+                    & > th {
+                        @apply p-2;
+                    }
+                }
+            }
+            
+            & >tbody{
+                & > tr {
+                    & > td {
+                        @apply px-1 py-2 align-top;
+                    }
+
+                    & .it-table-repeater-actions{
+                        @apply flex items-center gap-x-3 py-2 px-1;
+                    }
+
+                }
+            }
+        }
+
+        & .it-table-repeater-collapsed {
+            @apply p-2 text-xs text-center text-gray-400;
+        }
+
+    }
+
+    & .it-table-repeater-add {
+        @apply flex py-2 px-8
+    }
+    
+}
+
+.it-hidden{
+    @apply hidden
+}

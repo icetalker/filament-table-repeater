@@ -1,0 +1,16 @@
+{
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "build:css": "npx @tailwindcss/cli -i resources/css/table-repeater.css -o dist/css/table-repeater.css --postcss --minify",
+    "build": "npm run build:css"
+  },
+  "devDependencies": {
+    "@tailwindcss/forms": "^0.5.10",
+    "@tailwindcss/typography": "^0.5.16",
+    "autoprefixer": "^10.4.21",
+    "postcss": "^8.5.6",
+    "postcss-nesting": "^13.0.2",
+    "tailwindcss": "^4.1.11"
+  }
+}
