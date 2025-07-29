@@ -5,9 +5,7 @@ namespace Icetalker\FilamentTableRepeater\Forms\Components;
 use Closure;
 use Filament\Actions\Action;
 use Filament\Actions\ActionGroup;
-use Filament\Forms\Components\Field;
 use Filament\Forms\Components\Repeater;
-use Filament\Forms\Components\Repeater\TableColumn;
 use Filament\Schemas\Components\Component;
 use Filament\Schemas\Schema;
 use Illuminate\Contracts\Support\Htmlable;
@@ -66,7 +64,7 @@ class TableRepeater extends Repeater
     {
         parent::relationship($name, $modifyQueryUsing);
 
-        if($this->orderColumn){
+        if ($this->orderColumn) {
             $this->reorderable($this->evaluate($this->orderColumn));
         }
 
