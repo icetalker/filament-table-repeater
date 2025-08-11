@@ -2,10 +2,10 @@
 
 namespace Icetalker\FilamentTableRepeater;
 
+use Filament\Support\Assets\Css;
+use Filament\Support\Facades\FilamentAsset;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use Filament\Support\Facades\FilamentAsset;
-use Filament\Support\Assets\Css;
 
 class FilamentTableRepeaterServiceProvider extends PackageServiceProvider
 {
@@ -40,7 +40,7 @@ class FilamentTableRepeaterServiceProvider extends PackageServiceProvider
     protected function registerAssets()
     {
         FilamentAsset::register([
-            Css::make('table-repeater', __DIR__ .'/../dist/css/table-repeater.css')
+            Css::make('table-repeater', __DIR__ .'/../dist/css/table-repeater.css'),
         ], 'filament-table-repeater');
     }
 }
