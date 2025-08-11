@@ -47,8 +47,7 @@ protected function form(Form $form): Form
                 ->cloneable()
                 ->collapsible()
                 ->minItems(3)
-                ->maxItems(5)
-                ->columnSpanFull(),
+                ->maxItems(5),
 
     ]);
 }
@@ -69,20 +68,17 @@ protected function form(Form $form): Form
 {
     return $form->schema([
         ...
-        Forms\Components\Grid::make(1)->schema([
+        TableRepeater::make('items')
+            ->relationship('items')
+            ->schema([
+                Forms\Components\TextInput::make('product'),
+                Forms\Components\TextInput::make('quantity'),
+                ...
+            ])
+            ->colStyles([
+                'product' => 'color: #0000ff; width: 250px;',
+            ]),
 
-            TableRepeater::make('items')
-                ->relationship('items')
-                ->schema([
-                    Forms\Components\TextInput::make('product'),
-                    Forms\Components\TextInput::make('quantity'),
-                    ...
-                ])
-                ->colStyles([
-                    'product' => 'color: #0000ff; width: 250px;',
-                ]),
-
-        ]),
 
     ]);
 }

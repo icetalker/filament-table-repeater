@@ -25,7 +25,6 @@
         & > table {
             @apply w-full text-left rtl:text-right table-auto mx-4;
 
-
             & > thead {
                 & > tr {
                     & > th {
@@ -55,11 +54,11 @@
     }
 
     & .it-table-repeater-add {
-        @apply flex py-2 px-8
+        @apply flex py-2 px-8;
     }
     
 }
 
 .it-hidden{
-    @apply hidden
+    @apply hidden;
 }
