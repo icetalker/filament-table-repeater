@@ -60,9 +60,9 @@ class TableRepeater extends Repeater
     }
 
     //So that `OrderColumn()` could be used before `relationship()`
-    public function relationship(string | Closure | null $name = null, ?Closure $modifyQueryUsing = null): static
+    public function relationship(string | Closure | null $name = null, ?Closure $modifyQueryUsing = null, ?Closure $modifyRecordsUsing = null): static
     {
-        parent::relationship($name, $modifyQueryUsing);
+        parent::relationship($name, $modifyQueryUsing, $modifyRecordsUsing);
 
         if ($this->orderColumn) {
             $this->reorderable($this->evaluate($this->orderColumn));
