@@ -32,25 +32,19 @@ php artisan vendor:publish --tag="filament-table-repeater"
 
 ```php
 use Icetalker\FilamentTableRepeater\Forms\Components\TableRepeater;
+use Filament\Forms\Components\TextInput;
 
-protected function form(Form $form): Form
-{
-    return $form->schema([
+TableRepeater::make('items')
+    ->relationship('items')
+    ->schema([
+        TextInput::make('product'),
         ...
-        TableRepeater::make('items')
-                ->relationship('items')
-                ->schema([
-                    Forms\Components\TextInput::make('product'),
-                    ...
-                ])
-                ->reorderable()
-                ->cloneable()
-                ->collapsible()
-                ->minItems(3)
-                ->maxItems(5),
-
-    ]);
-}
+    ])
+    ->reorderable()
+    ->cloneable()
+    ->collapsible()
+    ->minItems(3)
+    ->maxItems(5),
 ```
 
 > Since this component extends from `Filament\Forms\Components\Repeater`, you can use most of its methods, except for a few methods like `inset()`, `grid()`, `columns()`. 
@@ -63,56 +57,40 @@ To customize styles for each cell, you can pass an array of component name as ke
 
 ```php
 use Icetalker\FilamentTableRepeater\Forms\Components\TableRepeater;
+use Filament\Forms\Components\TextInput;
 
-protected function form(Form $form): Form
-{
-    return $form->schema([
+TableRepeater::make('items')
+    ->relationship('items')
+    ->schema([
+        TextInput::make('product'),
+        TextInput::make('quantity'),
         ...
-        TableRepeater::make('items')
-            ->relationship('items')
-            ->schema([
-                Forms\Components\TextInput::make('product'),
-                Forms\Components\TextInput::make('quantity'),
-                ...
-            ])
-            ->colStyles([
-                'product' => 'color: #0000ff; width: 250px;',
-            ]),
+    ])
+    ->colStyles([
+        'product' => 'color: #0000ff; width: 250px;',
+    ]),
 
-
-    ]);
-}
 ```
 
 Besides, you can also pass a callback function to `colStyles()`. This may unlock more customization possibilities. See example below:
 
 ```php
 use Icetalker\FilamentTableRepeater\Forms\Components\TableRepeater;
+use Filament\Forms\Components\TextInput;
 
-protected function form(Form $form): Form
-{
-    return $form
-        ->schema([
-            ...
-            Forms\Components\Grid::make(1)->schema([
+TableRepeater::make('items')
+    ->relationship('items')
+    ->schema([
+        TextInput::make('product'),
+        TextInput::make('quantity'),
+        ...
+    ])
+    ->colStyles(function(){
+        return [
+            'product' => 'color: #0000ff; width: 250px;',
+        ]
+    }),
 
-                TableRepeater::make('items')
-                    ->relationship('items')
-                    ->schema([
-                        Forms\Components\TextInput::make('product'),
-                        Forms\Components\TextInput::make('quantity'),
-                        ...
-                    ])
-                    ->colStyles(function(){
-                        return [
-                            'product' => 'color: #0000ff; width: 250px;',
-                        ]
-                    }),
-
-            ]),
-
-        ]);
-}
 ```
 
 ## Alternative
