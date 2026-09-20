@@ -25,6 +25,7 @@ use Filament\Support\Enums\Alignment;
         $isReorderable = $isReorderable();
         $isReorderableWithButtons = $isReorderableWithButtons();
         $isReorderableWithDragAndDrop = $isReorderableWithDragAndDrop();
+        $getReorderAnimationDuration = $getReorderAnimationDuration();
 
         $statePath = $getStatePath();
 
@@ -109,6 +110,10 @@ use Filament\Support\Enums\Alignment;
 
                 <tbody
                     x-sortable
+                    data-sortable-animation-duration='{{ $getReorderAnimationDuration }}'
+                    x-on:end.stop="
+                        $wire.mountAction('reorder', { items: $event.target.sortable.toArray() }, { schemaComponent: '{{ $getKey() }}' });
+                    "
                 >
 
                     @foreach ($items as $itemKey => $item)
