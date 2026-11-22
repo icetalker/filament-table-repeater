@@ -119,6 +119,7 @@ use Filament\Support\Enums\Alignment;
                     @foreach ($items as $itemKey => $item)
 
                         <tr
+                            wire:ignore.self
                             x-on:repeater-collapse.window="$event.detail === '{{ $getStatePath() }}' && (isCollapsed = true)"
                             x-on:repeater-expand.window="$event.detail === '{{ $getStatePath() }}' && (isCollapsed = false)"
                             wire:key="{{ $item->getLivewireKey() }}.item"
