@@ -115,6 +115,7 @@ use Filament\Support\Enums\Alignment;
                     @foreach ($containers as $uuid => $item)
 
                         <tr
+                            wire:ignore.self
                             class="it-table-repeater-row"
                             x-on:repeater-collapse.window="$event.detail === '{{ $getStatePath() }}' && (isCollapsed = true)"
                             x-on:repeater-expand.window="$event.detail === '{{ $getStatePath() }}' && (isCollapsed = false)"
